@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Borhanedine BOUSSAHA — Engineer & Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #080c10;
+      --bg2: #0e1520;
+      --bg3: #131d2b;
+      --accent: #00d4ff;
+      --accent2: #0077ff;
+      --text: #e8edf4;
+      --muted: #6b7f96;
+      --border: rgba(0, 212, 255, 0.12);
+      --glow: 0 0 40px rgba(0, 212, 255, 0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(8,12,16,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    section { position: relative; z-index: 1; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+    /* HERO */
+    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-tag::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--accent); }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(40px, 4.5vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+    h1 .name-first { display: block; color: var(--text); }
+    h1 .name-last { display: block; color: var(--accent); }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(36px, 4vw, 56px);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+    .hero-desc { font-size: 17px; color: var(--muted); line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+    .btn-primary { background: var(--accent); color: var(--bg); font-weight: 500; }
+    .btn-primary:hover { background: #fff; box-shadow: 0 0 30px rgba(0,212,255,0.4); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* TERMINAL */
+    .hero-visual { position: relative; }
+    .terminal {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--glow), 0 40px 80px rgba(0,0,0,0.5);
+    }
+    .terminal-bar {
+      background: var(--bg3);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-r { background: #ff5f56; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #27c93f; }
+    .terminal-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); margin-left: auto; margin-right: auto; }
+    .terminal-body { padding: 28px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 2.0; }
+    .t-comment { color: #4a6075; }
+    .t-key { color: #00d4ff; }
+    .t-str { color: #a8e6a3; }
+    .t-num { color: #ffbd7a; }
+    .t-arr { color: var(--muted); }
+    .t-bool { color: #ff9eb5; }
+
+    /* SECTION HEADERS */
+    .section-header { margin-bottom: 64px; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 200px; }
+
+    /* ABOUT */
+    #about { padding: 120px 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 20px; font-size: 16px; line-height: 1.9; }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .stat { background: var(--bg2); padding: 28px; border: 1px solid var(--border); }
+    .stat:first-child { border-radius: 12px 0 0 0; }
+    .stat:nth-child(2) { border-radius: 0 12px 0 0; }
+    .stat:nth-child(3) { border-radius: 0 0 0 12px; }
+    .stat:last-child { border-radius: 0 0 12px 0; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 13px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+    /* EXPERIENCE */
+    #experience { padding: 120px 0; background: linear-gradient(180deg, transparent, rgba(0,212,255,0.02), transparent); }
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--accent), transparent); }
+    .timeline-item { position: relative; margin-bottom: 56px; padding-left: 40px; }
+    .timeline-dot { position: absolute; left: -38px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 16px rgba(0,212,255,0.5); }
+    .timeline-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+    .timeline-company { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px; }
+    .timeline-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 4px 10px; border-radius: 3px; background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.2); letter-spacing: 0.1em; text-transform: uppercase; }
+    .timeline-role { font-size: 15px; color: var(--muted); margin-bottom: 6px; }
+    .timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+    .timeline-desc { color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 16px; }
+    .stack-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 4px 12px; border-radius: 3px; background: var(--bg3); color: var(--text); border: 1px solid var(--border); }
+
+    /* PROJECTS */
+    #projects { padding: 120px 0; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+    .project-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); box-shadow: var(--glow); }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+    .project-icon { font-size: 28px; }
+    .project-github {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px; height: 34px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .project-github:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.05); }
+    .project-github svg { width: 16px; height: 16px; fill: currentColor; }
+    .project-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 12px; letter-spacing: -0.3px; }
+    .project-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+    .project-metric { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 16px; }
+
+    /* SKILLS */
+    #skills { padding: 120px 0; background: linear-gradient(180deg, transparent, rgba(0,212,255,0.02), transparent); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .skill-group { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+    .skill-group-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .skill-item { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 14px; }
+    .skill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; opacity: 0.7; }
+
+    /* CERTS */
+    .certs-section { margin-top: 72px; }
+    .certs-header { margin-bottom: 28px; }
+    .certs { display: flex; gap: 16px; flex-wrap: wrap; }
+    .cert-badge { display: flex; align-items: center; gap: 12px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; }
+    .cert-icon { font-size: 24px; }
+    .cert-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+    .cert-issuer { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+
+    /* CONTACT */
+    #contact { padding: 120px 0; }
+    .contact-inner { text-align: center; max-width: 600px; margin: 0 auto; }
+    .contact-inner h2 { margin-bottom: 20px; }
+    .contact-inner p { color: var(--muted); font-size: 17px; margin-bottom: 48px; line-height: 1.8; }
+    .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .contact-link { display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted); text-decoration: none; padding: 12px 20px; border: 1px solid var(--border); border-radius: 6px; transition: all 0.2s; }
+    .contact-link:hover { color: var(--accent); border-color: rgba(0,212,255,0.4); background: rgba(0,212,255,0.05); }
+
+    /* FOOTER */
+    footer { padding: 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+    footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+
+    /* ANIMATIONS */
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent); margin-left: 2px; animation: blink 1s infinite; vertical-align: middle; }
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* GITHUB SVG PATH (shared) */
+    .gh-path { fill: currentColor; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 24px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Borhanedine BOUSSAHA</div>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">Available for opportunities</div>
+        <h1>
+          <span class="name-first">Borhanedine</span>
+          <span class="name-last">BOUSSAHA.</span>
+        </h1>
+        <p class="hero-desc">
+          Final-year Engineering student at ENSTICP — building at the intersection of
+          <strong style="color:var(--text)">software development</strong>,
+          <strong style="color:var(--text)">distributed systems</strong>, and
+          <strong style="color:var(--text)">applied AI</strong>.
+        </p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-primary">View my work</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <span class="terminal-title">borhanedine.json</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-comment">// Engineer & Developer</div>
+            <div>{</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-str">"Borhanedine BOUSSAHA"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"email"</span>: <span class="t-str">"boussahaborhanedine&#64;gmail.com"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-str">"Algeria &#127465;&#127487;"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-str">"Backend &amp; Mobile Dev · DevOps Enthausiast"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"stack"</span>: <span class="t-arr">[</span></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Flutter"</span>, <span class="t-str">"Node.js"</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Python"</span>, <span class="t-str">"Docker"</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"GCP"</span>, <span class="t-str">"AWS"</span></div>
+            <div>&nbsp;&nbsp;<span class="t-arr">]</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"open_to_work"</span>: <span class="t-bool">true</span></div>
+            <div>}<span class="cursor"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">01 — About</div>
+        <h2>Who I am.<br>What I do.</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text fade-up">
+          <p>I'm a <strong>5th-year Telecom & Networks Engineering student</strong> at ENSTICP, Algiers — combining deep systems knowledge with hands-on software development across mobile, backend, cloud, and AI.</p>
+          <p>Over the past year I've contributed to real-world projects at <strong>three companies</strong>  — building e-commerce backends for a large-scale platform, a mobile health app, and AI agents that automate customer support workflows.</p>
+          <p>I move fast across the stack. Flutter on the frontend, Node.js or FastAPI on the backend, Docker and GitHub Actions for delivery, GCP and AWS for infrastructure. I care about clean architecture, testable code, and systems that don't break at 2 AM.</p>
+          <p>Outside of code: chess, long reads about AI and tech, and hiking. Always up for a good game.</p>
+        </div>
+        <div class="stats-grid fade-up">
+          <div class="stat"><div class="stat-num">3</div><div class="stat-label">companies worked at</div></div>
+          <div class="stat"><div class="stat-num">5</div><div class="stat-label">years of engineering</div></div>
+          <div class="stat"><div class="stat-num">C2</div><div class="stat-label">english (EF SET)</div></div>
+          <div class="stat"><div class="stat-num">19+</div><div class="stat-label">github repos</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">02 — Experience</div>
+        <h2>Real work.<br>Real companies.</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-company">Icosnet</span>
+            <span class="timeline-badge">PFE Internship</span>
+          </div>
+          <div class="timeline-role">AI Agent Developer</div>
+          <div class="timeline-date">Feb 2026 – Jun 2026 · Algiers · Remote</div>
+          <p class="timeline-desc">Designing and developing an AI agent for customer support using LLM pipelines with context management and intent detection. Automating ticket resolution and integrating into production via Docker and REST APIs.</p>
+          <div class="stack-pills">
+            <span class="pill">LLM Pipelines</span><span class="pill">OpenAI</span><span class="pill">Docker</span><span class="pill">REST APIs</span><span class="pill">NLP</span>
+          </div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-company">Buydiz</span>
+            <span class="timeline-badge">Part-time</span>
+          </div>
+          <div class="timeline-role">Backend Developer — Express.js</div>
+          <div class="timeline-date">Jul 2025 – Dec 2025 · Remote</div>
+          <p class="timeline-desc">Built the backend of a large-scale e-commerce platform featuring a TikTok-style product feed and real-time interactions. </p>
+          <div class="stack-pills">
+            <span class="pill">Node.js</span><span class="pill">Express.js</span><span class="pill">PostgreSQL</span><span class="pill">Sequelize</span><span class="pill">Docker</span><span class="pill">GitHub Actions</span><span class="pill">Swagger</span>
+          </div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-company">Arimayi</span>
+            <span class="timeline-badge">Internship</span>
+          </div>
+          <div class="timeline-role">Mobile Developer — Flutter</div>
+          <div class="timeline-date">Jul 2025 – Sep 2025 · Remote</div>
+          <p class="timeline-desc">Contributed to E-Saha, a health app for patient and medication management, within a cross-functional team. Developed features, integrated REST APIs, and improved UI under Clean Architecture patterns.</p>
+          <div class="stack-pills">
+            <span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">REST APIs</span><span class="pill">Clean Architecture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">03 — Projects</div>
+        <h2>Things I've<br>actually built.</h2>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card fade-up">
+          <div class="project-card-top">
+            <div class="project-icon">&#129752;</div>
+            <a href="https://github.com/borhanedinee/heart-disease-classifier" target="_blank" class="project-github" title="View on GitHub">
+              <svg viewBox="0 0 24 24"><path class="gh-path" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            </a>
+          </div>
+          <div class="project-title">Heart Disease Classifier</div>
+          <p class="project-desc">End-to-end ML pipeline with data cleaning, Random Forest model, FastAPI serving, and Docker deployment on GCP.</p>
+          <div class="project-metric">F1: 0.81 · AUROC: 0.89</div>
+          <div class="stack-pills"><span class="pill">Python</span><span class="pill">scikit-learn</span><span class="pill">FastAPI</span><span class="pill">Docker</span><span class="pill">GCP</span></div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-card-top">
+            <div class="project-icon">&#129504;</div>
+            <a href="https://github.com/borhanedinee/youtube_video_translator" target="_blank" class="project-github" title="View on GitHub">
+              <svg viewBox="0 0 24 24"><path class="gh-path" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            </a>
+          </div>
+          <div class="project-title">AI Language Learning App</div>
+          <p class="project-desc">YouTube transcription via AssemblyAI, vocabulary extraction and translation using OpenAI, adapted to the user's language level.</p>
+          <div class="project-metric">AssemblyAI · OpenAI API</div>
+          <div class="stack-pills"><span class="pill">Flutter</span><span class="pill">AssemblyAI</span><span class="pill">OpenAI</span><span class="pill">Sqflite</span></div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-card-top">
+            <div class="project-icon">&#128188;</div>
+            <a href="https://github.com/borhanedinee/khidma" target="_blank" class="project-github" title="View on GitHub">
+              <svg viewBox="0 0 24 24"><path class="gh-path" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            </a>
+          </div>
+          <div class="project-title">Recruitment Platform</div>
+          <p class="project-desc">Full-featured job board with real-time recruiter–candidate chat, CV/portfolio applications, and push notifications via FCM.</p>
+          <div class="project-metric">Real-time · Socket.io · FCM</div>
+          <div class="stack-pills"><span class="pill">Flutter</span><span class="pill">Node.js</span><span class="pill">Socket.io</span><span class="pill">MySQL</span><span class="pill">Firebase</span></div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-card-top">
+            <div class="project-icon">&#128172;</div>
+            <a href="https://github.com/borhanedinee/messenger_chat_head" target="_blank" class="project-github" title="View on GitHub">
+              <svg viewBox="0 0 24 24"><path class="gh-path" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            </a>
+          </div>
+          <div class="project-title">Messenger Chat Heads</div>
+          <p class="project-desc">Flutter implementation of the iconic Facebook Messenger floating chat head feature. 6 stars on GitHub.</p>
+          <div class="project-metric">&#11088; 6 stars · 6 forks</div>
+          <div class="stack-pills"><span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">C++</span></div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-card-top">
+            <div class="project-icon">&#9889;</div>
+            <a href="https://github.com/borhanedinee/realtime_chat_app" target="_blank" class="project-github" title="View on GitHub">
+              <svg viewBox="0 0 24 24"><path class="gh-path" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            </a>
+          </div>
+          <div class="project-title">Realtime Chat App</div>
+          <p class="project-desc">Simple but solid realtime messaging using Flutter frontend with Node.js backend and Socket.io for bidirectional communication.</p>
+          <div class="project-metric">Flutter · Node.js · Socket.io</div>
+          <div class="stack-pills"><span class="pill">Flutter</span><span class="pill">Node.js</span><span class="pill">Socket.io</span></div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-card-top">
+            <div class="project-icon">&#128231;</div>
+            <a href="https://github.com/borhanedinee/archive_email_animation_with_flutter" target="_blank" class="project-github" title="View on GitHub">
+              <svg viewBox="0 0 24 24"><path class="gh-path" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            </a>
+          </div>
+          <div class="project-title">Gmail Archive Animation</div>
+          <p class="project-desc">Flutter implementation of Gmail's satisfying swipe-to-archive animation — a deep dive into Flutter gestures and physics.</p>
+          <div class="project-metric">Animation · UX</div>
+          <div class="stack-pills"><span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">Animations</span></div>
+        </div>
+
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <a href="https://github.com/borhanedinee" target="_blank" class="btn btn-ghost">View all on GitHub &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">04 — Skills</div>
+        <h2>Stack.<br>Tools. Expertise.</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group fade-up">
+          <div class="skill-group-title">Mobile</div>
+          <div class="skill-item"><div class="skill-dot"></div>Flutter &amp; Dart</div>
+          <div class="skill-item"><div class="skill-dot"></div>Clean Architecture</div>
+          <div class="skill-item"><div class="skill-dot"></div>Feature-based Architecture</div>
+          <div class="skill-item"><div class="skill-dot"></div>GetX</div>
+          <div class="skill-item"><div class="skill-dot"></div>BLoC</div>
+          <div class="skill-item"><div class="skill-dot"></div>REST API integration</div>
+          <div class="skill-item"><div class="skill-dot"></div>Firebase &amp; FCM</div>
+          <div class="skill-item"><div class="skill-dot"></div>Sqflite</div>
+        </div>
+        <div class="skill-group fade-up">
+          <div class="skill-group-title">Backend</div>
+          <div class="skill-item"><div class="skill-dot"></div>Node.js / Express.js</div>
+          <div class="skill-item"><div class="skill-dot"></div>FastAPI (Python)</div>
+          <div class="skill-item"><div class="skill-dot"></div>PostgreSQL / MySQL</div>
+          <div class="skill-item"><div class="skill-dot"></div>Sequelize ORM</div>
+          <div class="skill-item"><div class="skill-dot"></div>Supabase</div>
+          <div class="skill-item"><div class="skill-dot"></div>Socket.io</div>
+          <div class="skill-item"><div class="skill-dot"></div>Swagger / REST</div>
+        </div>
+        <div class="skill-group fade-up">
+          <div class="skill-group-title">DevOps &amp; Cloud</div>
+          <div class="skill-item"><div class="skill-dot"></div>Docker &amp; Kubernetes</div>
+          <div class="skill-item"><div class="skill-dot"></div>GitHub Actions (CI/CD)</div>
+          <div class="skill-item"><div class="skill-dot"></div>GCP (VM, deploy)</div>
+          <div class="skill-item"><div class="skill-dot"></div>AWS (EC2, S3, IAM)</div>
+          <div class="skill-item"><div class="skill-dot"></div>Nginx</div>
+          <div class="skill-item"><div class="skill-dot"></div>Linux</div>
+        </div>
+        <div class="skill-group fade-up">
+          <div class="skill-group-title">AI &amp; ML</div>
+          <div class="skill-item"><div class="skill-dot"></div>scikit-learn</div>
+          <div class="skill-item"><div class="skill-dot"></div>LLM Pipelines</div>
+          <div class="skill-item"><div class="skill-dot"></div>OpenAI API</div>
+          <div class="skill-item"><div class="skill-dot"></div>AssemblyAI</div>
+          <div class="skill-item"><div class="skill-dot"></div>NLP &amp; Intent Detection</div>
+          <div class="skill-item"><div class="skill-dot"></div>AI Agent Design</div>
+        </div>
+        <div class="skill-group fade-up">
+          <div class="skill-group-title">Architecture</div>
+          <div class="skill-item"><div class="skill-dot"></div>Clean Architecture</div>
+          <div class="skill-item"><div class="skill-dot"></div>SOLID Principles</div>
+          <div class="skill-item"><div class="skill-dot"></div>MVC</div>
+          <div class="skill-item"><div class="skill-dot"></div>TDD</div>
+          <div class="skill-item"><div class="skill-dot"></div>Scrum / Kanban</div>
+          <div class="skill-item"><div class="skill-dot"></div>OOP Design Patterns</div>
+        </div>
+        <div class="skill-group fade-up">
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-item"><div class="skill-dot"></div>Dart</div>
+          <div class="skill-item"><div class="skill-dot"></div>JavaScript / TypeScript</div>
+          <div class="skill-item"><div class="skill-dot"></div>Python</div>
+          <div class="skill-item"><div class="skill-dot"></div>Arabic (native)</div>
+          <div class="skill-item"><div class="skill-dot"></div>French (B2 — TCF-SO)</div>
+          <div class="skill-item"><div class="skill-dot"></div>English (C2 — EF SET)</div>
+        </div>
+      </div>
+
+      <!-- CERTIFICATIONS -->
+      <div class="certs-section fade-up">
+        <div class="certs-header">
+          <div class="section-label">Certifications</div>
+        </div>
+        <div class="certs">
+          <div class="cert-badge">
+            <div class="cert-icon">&#9729;&#65039;</div>
+            <div>
+              <div class="cert-name">Oracle Cloud Infrastructure</div>
+              <div class="cert-issuer">DevOps Professional · Oracle</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-inner fade-up">
+        <div class="section-label" style="justify-content:center;">05 — Contact</div>
+        <h2>Let's work<br>together.</h2>
+        <p>I'm open to internships, freelance work, and interesting collaborations. Whether you want to talk tech, chess, or a project — my inbox is open.</p>
+        <div class="contact-links">
+          <a href="mailto:boussahaborhanedine@gmail.com" class="contact-link">
+            &#9993; boussahaborhanedine&#64;gmail.com
+          </a>
+          <a href="https://github.com/borhanedinee" target="_blank" class="contact-link">
+            <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            github.com/borhanedinee
+          </a>
+          <a href="https://www.linkedin.com/in/borhanedine-boussaha/" target="_blank" class="contact-link">
+            <span style="font-weight:700;font-size:12px;">in</span> LinkedIn
+          </a>
+        </div>
+        <a href="mailto:boussahaborhanedine@gmail.com" class="btn btn-primary">Say hello &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&#169; 2026 Borhanedine BOUSSAHA</p>
+    <p>portfolio.borhanedinee.me</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+      navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : ''; });
+    });
+  </script>
+
+</body>
+</html>
